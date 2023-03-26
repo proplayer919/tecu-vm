@@ -1,0 +1,14 @@
+class BIOS {
+
+}
+
+class CompInterface {
+    BIOS bios;
+    public CompInterface(BIOS bios) {
+        this.bios = bios;
+    }
+}
+
+class BOOTMANAGER {
+
+}
