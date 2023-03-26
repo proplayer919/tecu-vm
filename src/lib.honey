@@ -7,8 +7,50 @@ class CompInterface {
     public CompInterface(BIOS bios) {
         this.bios = bios;
     }
+
+    public void initOS() {
+        // init OS
+    }
+
+    public void initBIOS() {
+        // init BIOS
+    }
 }
 
 class BOOTMANAGER {
+    CompInterface comp;
+    public BOOTMANAGER(CompInterface comp) {
+        this.comp = comp;
+    }
 
+    public void execOS() {
+        
+    }
+
+    public void onQuickBoot() {
+        // run the boot manager
+        execBootManager();
+    }
+
+    public void onFullBoot() {
+        // run the boot manager
+        comp.initBIOS();
+        comp.initOS();
+        execBootManager();
+    }
+
+    public void onFailBoot() {
+        // run the boot manager
+        execBootManager();
+    }
+}
+
+public void enterBootMode(bool forceQuickBoot) {
+    if(forceQuickBoot) {
+        BOOTMANAGER.onQuickBoot();
+    } else {
+        BOOTMANAGER.onFullBoot();
+    }
+}, SysException = () -> {
+    BOOTMANAGER.onFailBoot();
 }
